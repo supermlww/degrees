@@ -1,5 +1,8 @@
 import csv
+import queue
 import sys
+from queue import Queue
+from typing import Any
 
 from util import Node, StackFrontier, QueueFrontier
 
@@ -94,6 +97,39 @@ def shortest_path(source, target):
 
     # TODO
     raise NotImplementedError
+    q=queue.Queue()
+    q.put(source)
+    dist=[-1]*length
+    dist[source]=0
+
+    while q.size():
+        temp=q.get()
+        if temp==target:
+            return dist[temp]
+
+        temp_list=people.get(temp)+movies.get(temp)
+        for item in temp_list:
+            if dist[item]!=-1:
+                continue;
+            q.put(item)
+            dist[item]=dist[temp]+1
+    return 0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 def person_id_for_name(name):
